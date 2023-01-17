@@ -1,6 +1,6 @@
-# Projeto de testes dos servi�os do mp-adquirente
+# Projeto de testes dos servicos do campo de treinamento e aplicação contas professor, sites de responsabilidade e hospedagem do professor Wagner aquino!
 
-Projeto para realização de testes de integração do mp-compliance, com Cypress e JavaScript (focado em testes de FRONT e API)
+Projeto para realização de testes E2E, com Cypress e JavaScript (focado em testes de FRONT e API)
 
 ## Pré-requisitos:
 - [NodeJS](https://nodejs.org/en/download/ "NodeJS")
