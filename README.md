@@ -1,4 +1,4 @@
-# Projeto de testes dos servicos do campo de treinamento e aplicação contas professor, sites de responsabilidade e hospedagem do professor Wagner aquino!
+# Projeto de testes aplicação campo de treinamento e aplicação contas, sites e aplicações de responsabilidade e hospedagem do professor Wagner aquino!
 
 Projeto para realização de testes E2E, com Cypress e JavaScript (focado em testes de FRONT e API)
 
