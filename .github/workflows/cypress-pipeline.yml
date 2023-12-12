@@ -1,0 +1,57 @@
+name: Testes end to end cypress
+on: [push]
+jobs:
+        
+        chrome:
+            runs-on: ubuntu-22.04
+            name: E2E on Chrome
+            steps:
+              - uses: actions/checkout@v4
+              - uses: cypress-io/github-action@v6
+                with:
+                  browser: chrome
+
+        firefox:
+                    runs-on: windows-2022
+                    name: E2E on Firefox
+                    steps:
+                      - uses: actions/checkout@v4
+                      - uses: cypress-io/github-action@v6
+                        with:
+                          browser: firefox
+        edge:
+                            runs-on: ubuntu-22.04
+                            name: E2E on Edge
+                            steps:
+                              - uses: actions/checkout@v4
+                              - uses: cypress-io/github-action@v6
+                                with:
+                                  browser: edge
+                    
+                              - name: Get Allure history
+                                uses: actions/checkout@v2
+                                if: always()
+                                continue-on-error: true
+                                with:
+                                  ref: gh-pages
+                                  path: gh-pages
+                                
+                              - name: Test marketplace action
+                                uses: simple-elf/allure-report-action@gh-pages
+                                if: always()
+                                id: allure-report
+                                with:
+                                    allure_results: allure-results
+                                    gh_pages: gh-pages
+                                    allure_report: allure-report
+                                    allure_history: allure-history
+                                    keep_reports: 20
+                            
+                              - name: Deploy report to Github Pages
+                                if: always()
+                                uses: peaceiris/actions-gh-pages@v2
+                                env:
+                                    PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                                    PUBLISH_BRANCH: gh-pages
+                                    PUBLISH_DIR: allure-history
+                              
