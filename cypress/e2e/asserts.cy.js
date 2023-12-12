@@ -8,7 +8,7 @@ it('Equality', ()=>{
 })
 
 it('Validando retornos de igualdade ou booleanos', ()=>{
-    //validar
+    //validar retorno do json
 
 const a = true
 const b = null
