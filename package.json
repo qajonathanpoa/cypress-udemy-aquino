@@ -4,7 +4,9 @@
   "description": "Projeto para realização de testes E2E, com Cypress e JavaScript (focado em testes de FRONT e API)",
   "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "allure:report": "allure generate allure-results --clean -o allure-report",
+    "allure:regression": "cypress run --browser chrome --spec cypress/e2e/**.js"
   },
   "repository": {
     "type": "git",
