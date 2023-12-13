@@ -26,8 +26,12 @@ jobs:
                             steps:
                               - uses: actions/checkout@v4
                               - uses: cypress-io/github-action@v6
+                              - uses: actions/setup-java@v2
                                 with:
                                   browser: edge
+                                  java-version: '11'
+                                  distribution: 'adopt'
+    
                               - name: Get Allure history
                                 uses: actions/checkout@v2
                                 if: always()
