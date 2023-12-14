@@ -10,6 +10,7 @@ module.exports = defineConfig({
     },
     env:{
       allureResultsPath: "allure-results",
+      allureAddVideoOnPass: false
     }
     
   },

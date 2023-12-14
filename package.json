@@ -5,8 +5,10 @@
   "main": "cypress.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "allure:report": "allure generate allure-results --clean -o allure-report",
-    "allure:regression": "cypress run --browser chrome --spec cypress/e2e/**.js"
+    "allure:report": "npm run allure generate allure-results --clean -o allure-report",
+    "regression:chrome": "cypress run --browser chrome --spec cypress/e2e/**.js",
+    "install-allure-report": "npm i -D @shelex/cypress-allure-plugin",
+    "allure-run": "npx cypress run --env allure=true"
   },
   "repository": {
     "type": "git",
