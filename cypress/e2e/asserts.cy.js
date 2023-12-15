@@ -30,7 +30,7 @@ it('Validando Equalidade de objetos', ()=>{
 
     expect(obj).equal(obj)
     expect(obj).to.be.equal(obj)
-    //Usando a propriedade deep para comparar dois objetos
+    //Usando a propriedade deep para comparar dois campos de um objeto
     expect(obj).to.be.deep.equal({a:1,b:2})
     expect(obj).eql({a:1,b:2})
     //Validando que existe uma propriedade especifica em um objeto
