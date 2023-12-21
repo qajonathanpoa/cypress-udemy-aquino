@@ -8,7 +8,7 @@ describe('Work with basic elements',()=>{
 
     })
 
-    it('Textos', ()=>{
+    it('Buscando Textos', ()=>{
 
         
         //Aumentando o escopo da pesquisa utilizando o body e o contain para fazer a assertiva
@@ -23,7 +23,7 @@ describe('Work with basic elements',()=>{
     })
     
 
-    it('Links', ()=>{
+    it('Buscando e clicando em Links', ()=>{
 
         
         cy.get('[href="#"]').click()
@@ -37,7 +37,7 @@ describe('Work with basic elements',()=>{
    
             })
 
-            it.only('TextFields', ()=>{
+            it('Preenchendo Text Fields', ()=>{
                 
                 cy.get('#formNome').type('Jonatinha',{delay:0})
                 .should('have.value', 'Jonatinha')
@@ -53,7 +53,43 @@ describe('Work with basic elements',()=>{
                 .should('have.value','Teste1234')
 
                 cy.get('#elementosForm\\:sugestoes').clear()
+                //Digitando erro e em seguinda apagando e digitando acerto
                 .type('Erro{selectall}acerto', { delay: 100 })
                 .should('have.value', 'acerto')
             })
-        })
+
+            it('Radio buttons', ()=>{
+                
+                cy.get('#formSexoFem')
+                .check()
+                .should('be.checked')
+                cy.get('#formSexoMasc')
+                .should('not.be.checked')
+
+                cy.get("[name=formSexo]")
+                .check()
+                .should('be.checked')
+                .should('have.length',2)
+      
+      
+            })
+            it('Clicando em checkboxes múltiplos com o check', ()=>{
+                //Marcando checkboxes multiplos com o check
+                cy.get('[name=formComidaFavorita]').check()
+                .should('be.checked')
+                .should('have.length', 4)
+            
+            })
+
+            
+            it.only('Clicando em checkboxes múltiplos com o click', ()=>{
+                //Marcando checkboxes multiplos com o parametro multiple
+                cy.get('[name=formComidaFavorita]').click({multiple: true})
+                .should('be.checked')
+                .should('have.length', 4)
+            
+                
+                
+            })
+        
+ })
