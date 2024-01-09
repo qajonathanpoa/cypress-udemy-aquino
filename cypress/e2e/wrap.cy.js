@@ -32,6 +32,26 @@ describe('Uso do wrap para acessar objetos no cypress', () => {
         cy.get('#buttonList').then(() => console.log('Encontrei o segundo numero'))
        
     })
+    it('Asserção com e sem o uso do Wrap', ()=>{
 
+        const objeto = {
+            idade: 12,
+            nome: 'Joquinha'
+        }
+        //Validando o objeto sem o wrap
+        expect(objeto).to.have.property('nome')
+         //Validando o objeto com o wrap para já poder utilizar o should da api do cypress como asserção
+        cy.wrap(objeto).should('have.property', 'nome')
+
+    })
+    it('Escrevendo em um formulario com em um elemento jquery e wrap', ()=>{
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
+        cy.get('#formNome').then($el =>{
+        //$el.val('Funcionando via jquery')
+        cy.wrap($el).type('Funcionando via Wrap cypress!')
+        })
+
+    })
 })
+
     
