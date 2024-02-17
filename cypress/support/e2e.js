@@ -16,5 +16,9 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import '@shelex/cypress-allure-plugin';
+//Alterada a ordem de prioridade de busca do cypress nos locators da página
+Cypress.SelectorPlayground.defaults({
+    selectorPriority: ['id', 'class', 'attributes','data-cy','data-test','data-testid','tag','attributes','nth-child'],
+  })
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

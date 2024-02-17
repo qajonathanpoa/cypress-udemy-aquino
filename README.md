@@ -9,6 +9,11 @@ Projeto para realização de testes E2E, com Cypress e JavaScript (focado em tes
 - [VSCode](https://code.visualstudio.com/ "VSCode")
 - [Cypress](https://www.npmjs.com/package/cypress "Cypress")
 
+## Portais para consulta de mapeamentos jquery selector e Xpath
+
+- [w3Schools](https://www.w3schools.com/jquery/jquery_ref_selectors.asp/)
+- [Rosetta Stone](https://www.red-gate.com/simple-talk/development/dotnet-development/xpath-css-dom-and-selenium-the-rosetta-stone/)
+
 ## Tutorial, Instalação e execução
 
 ### Executar este projeto em sua maquina
