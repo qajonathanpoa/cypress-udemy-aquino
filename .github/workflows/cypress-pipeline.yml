@@ -1,72 +1,34 @@
-name: allure-report
-'on':
-    push:
-        branches:
-            - master
+name: Testes end to end cypress
+on: pull_request
 jobs:
-    generate-report:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Download Cypress
-              uses: bahmutov/npm-install@v1
-              with:
-                  install-command: npm i --force
-              env:
-                  CYPRESS_INSTALL_BINARY: 0
+        
+        chrome:
+            runs-on: ubuntu-22.04
+            name: E2E on Chrome
+            steps:
+              - uses: actions/checkout@v4
+              - uses: cypress-io/github-action@v6
+                with:
+                  browser: chrome
 
-            - name: Check Cypress cache
-              run: |
-                  npx cypress cache path
-                  npx cypress cache list
-
-            - name: restore / cache the binary
-              id: cache-cypress
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cache/Cypress
-                  key: >-
-                      cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
-                      }}
-
-            - name: Install Cypress
-              run: |
-                  npx cypress install
-                  npx cypress cache list
-
-            - name: Run Cypress
-              continue-on-error: true
-              run: npm run cy:run
-              env:
-                  CYPRESS_SPLIT_SPEC_API_KEY: '${{ secrets.SPLIT_SPEC_API_KEY }}'
-
-            # - name: Run Cypress Cucumber
-            #   continue-on-error: true
-            #   if: always()
-            #   run: npm run cy:cucumber:run
-
-            - name: Get Allure history
-              uses: actions/checkout@v3
-              if: always()
-              continue-on-error: true
-              with:
-                ref: gh-pages
-                path: gh-pages
-                          
-            - name: Allure Report action from marketplace
-              uses: simple-elf/allure-report-action@master
-              if: always()
-              id: allure-report
-              with:
-                 allure_results: allure-results
-                 gh_pages: gh-pages
-                 allure_report: allure-report
-                 allure_history: allure-history
-                          
-            - name: Deploy report to Github Pages
-              if: always()
-              uses: peaceiris/actions-gh-pages@v2
-              env:
-                 PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                 PUBLISH_BRANCH: gh-pages
-                 PUBLISH_DIR: allure-history
+        firefox:
+                    runs-on: windows-2022
+                    name: E2E on Firefox
+                    steps:
+                      - uses: actions/checkout@v4
+                      - uses: cypress-io/github-action@v6
+                        with:
+                          browser: firefox
+        edge:
+                            runs-on: ubuntu-22.04
+                            name: E2E on Edge
+                            steps:
+                              - uses: actions/checkout@v4
+                              - uses: cypress-io/github-action@v6
+                                with:
+                                  browser: edge
+                              
+                              - uses: actions/upload-artifact@v3
+                                with:
+                                    name: Meu relatório goianinho
+                                    path: cypress/reports/html # or path/to/artifact
