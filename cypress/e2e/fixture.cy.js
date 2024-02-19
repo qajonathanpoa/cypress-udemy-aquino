@@ -7,6 +7,7 @@ describe('Fixtures tests', () => {
     it('Pegando dados de um arquivo fixture', () => {
         //Encontrando elemento por classe
         cy.get('#buttonSimple')
+        //tets
 
         
     })
