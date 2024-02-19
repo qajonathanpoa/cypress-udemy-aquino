@@ -10,6 +10,7 @@ jobs:
               - uses: cypress-io/github-action@v6
                 with:
                   browser: chrome
+                  headed: true
 
         firefox:
                     runs-on: windows-2022
@@ -19,6 +20,7 @@ jobs:
                       - uses: cypress-io/github-action@v6
                         with:
                           browser: firefox
+                          headed: true
         edge:
                             runs-on: ubuntu-22.04
                             name: E2E on Edge
@@ -27,6 +29,7 @@ jobs:
                               - uses: cypress-io/github-action@v6
                                 with:
                                   browser: edge
+                                  headed: true
                               
                               - uses: actions/upload-artifact@v3
                                 with:
