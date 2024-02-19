@@ -1,37 +1,59 @@
-name: Testes end to end cypress
-on: push
-jobs:
-        
-        chrome:
-            runs-on: windows-latest
-            name: E2E on Chrome
-            steps:
-              - uses: actions/checkout@v4
-              - uses: cypress-io/github-action@v6
-                with:
-                  browser: chrome
-                  headed: true
+name: example-chrome
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+  workflow_dispatch:
 
-        firefox:
-                    runs-on: windows-2022
-                    name: E2E on Firefox
-                    steps:
-                      - uses: actions/checkout@v4
-                      - uses: cypress-io/github-action@v6
-                        with:
-                          browser: firefox
-                          headed: true
-        edge:
-                            runs-on: ubuntu-22.04
-                            name: E2E on Edge
-                            steps:
-                              - uses: actions/checkout@v4
-                              - uses: cypress-io/github-action@v6
-                                with:
-                                  browser: edge
-                                  headed: true
-                              
-                              - uses: actions/upload-artifact@v3
-                                with:
-                                    name: Meu relatório goianinho
-                                    path: cypress/reports/html # or path/to/artifact
+jobs:
+
+  tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Chrome headless
+        uses: ./
+        with:
+          # Print information about the system and current environment
+          # including detected browsers
+          # which are pre-installed in GitHub-hosted runners
+          # see https://on.cypress.io/command-line#cypress-info
+          # We do not need the build parameter to build an app here
+          # because the remote https://example.cypress.io site
+          # is already built and running, and so for convenience
+          # we repurpose the build parameter to get cypress info instead.
+          build: npx cypress info
+          working-directory: examples/browser
+          browser: chrome
+          summary-title: 'Chrome headless'
+          # As of Cypress v8.0 the `cypress run` command
+          # executes tests in `headless` mode by default
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-headless-chrome
+          path: examples/browser/cypress/screenshots
+
+      - run: npx image-size cypress/screenshots/**/*.png
+        working-directory: examples/browser
+
+      - name: Chrome headed
+        uses: ./
+        with:
+          # Cypress and dependencies are already installed
+          install: false
+          working-directory: examples/browser
+          browser: chrome
+          headed: true
+          summary-title: 'Chrome headed'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-headed-chrome
+          path: examples/browser/cypress/screenshots
+
+      - run: npx image-size cypress/screenshots/**/*.png
+        working-directory: examples/browser
