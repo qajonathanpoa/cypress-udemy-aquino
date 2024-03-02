@@ -32,7 +32,7 @@ describe('Work with basic elements',()=>{
         
         cy.get('#resultado') .should('have.not.text','Voltou!')
         cy.contains('Voltar').click()
-        cy.get('#resultado') .should('have.text','Voltou!')
+        cy.get('#resultado').should('have.text','Voltou!')
         
    
             })
