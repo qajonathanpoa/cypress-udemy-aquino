@@ -2,7 +2,10 @@
     "nome":"Joaninha",
     "sobrenome":"Cavalca",
     "sexo":"formSexoMasc",
-    "comida":"Pizza",
-    "escolaridade":"Superior",
-    "esportes":"Natacao"
+    "comida":"pizza",
+    "escolaridade":"superior",
+    "esportes":["Natacao","Futebol","Corrida","Karate"]
+    
+        
+
 }
