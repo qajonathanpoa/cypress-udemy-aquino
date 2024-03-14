@@ -5,7 +5,7 @@ describe('Fixtures tests', function () {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
 
-    it('Pegando dados de um arquivo fixture', function () {
+    it.only('Pegando dados de um arquivo fixture', function () {
 
         cy.fixture("userData").then(function (dados) {
             this.payload = dados;
@@ -28,7 +28,6 @@ describe('Fixtures tests', function () {
 })
 
 
-// teste_spec.js
 describe('Teste de seleção de esportes', function () {
     beforeEach(function () {
         // Carrega os dados do arquivo fixture.json
